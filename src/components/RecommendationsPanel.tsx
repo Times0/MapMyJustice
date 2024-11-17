@@ -5,62 +5,62 @@ interface RecommendationsPanelProps {
   prompt: string;
 }
 
-// Fake recommendations data
+// Updated recommendations data
 const recommendations = [
   {
     id: 1,
-    title: "Schmidt v. Digital Privacy GmbH",
+    title: "Environmental Emergency v. Local Government",
     summary:
-      "Landmark case establishing new precedents for data privacy in the digital age. The European Court of Justice ruled in favor of strengthening individual privacy rights under GDPR in relation to AI-powered surveillance systems.",
+      "Landmark case establishing precedents for government responsibility in waste management crises. The court ruled on the extent of local authorities' obligations during environmental emergencies, particularly regarding public health and safety measures.",
     date: "2023-05-15",
-    category: "Constitutional Rights",
+    category: "Environmental Law",
     relevanceScore: 0.95,
-    country: "Germany",
-    article: "Article 1",
+    country: "Italy",
+    article: "Article 8",
   },
   {
     id: 2,
-    title: "Green Europe Alliance v. TechGiant PLC",
+    title: "Citizens' Coalition v. Waste Management Authority",
     summary:
-      "Groundbreaking environmental lawsuit challenging tech companies' data center emissions. Set new standards for corporate environmental responsibility under the European Green Deal framework.",
+      "Class action lawsuit challenging the government's handling of a prolonged waste disposal crisis. Set new standards for accountability and transparency in environmental crisis management.",
     date: "2023-08-22",
-    category: "Environmental",
+    category: "Public Health",
     relevanceScore: 0.89,
-    country: "United Kingdom",
+    country: "Greece",
     article: "Article 3",
   },
   {
     id: 3,
-    title: "Neural Networks Patent Dispute",
+    title: "Landfill Operators Association v. Environmental Regulator",
     summary:
-      "Major patent infringement case involving AI neural network architectures. Resulted in significant clarification of intellectual property rights under the European Patent Convention for artificial intelligence innovations.",
+      "Dispute over the closure and reopening of waste disposal facilities during an environmental crisis. Resulted in significant clarification of regulatory powers and environmental safety standards for waste management facilities.",
     date: "2023-11-03",
-    category: "Intellectual Property",
+    category: "Administrative Law",
     relevanceScore: 0.87,
-    country: "France",
-    article: "Article 5",
+    country: "Spain",
+    article: "Article 6",
   },
   {
     id: 4,
-    title: "State v. AutoDrive Systems",
+    title: "State v. Negligent Waste Disposal Operators",
     summary:
-      "Criminal liability case involving autonomous vehicle accidents. The court established a framework for determining criminal responsibility under EU transportation and AI regulations.",
+      "Criminal case involving private waste management companies accused of environmental violations. The court established a framework for determining criminal liability under EU environmental regulations.",
     date: "2023-09-30",
-    category: "Criminal Law",
+    category: "Criminal Environmental Law",
     relevanceScore: 0.84,
-    country: "Netherlands",
+    country: "France",
     article: "Article 2",
   },
   {
     id: 5,
-    title: "AI Merger Oversight Case",
+    title: "Residents v. Municipal Authorities",
     summary:
-      "Corporate merger case focusing on AI market concentration. Created new precedents for antitrust evaluation under European Commission competition law for AI-focused corporate consolidations.",
+      "Civil case focusing on the right to a healthy environment and government's duty to protect. Created new precedents for citizens' rights and state obligations during prolonged environmental crises.",
     date: "2023-12-15",
-    category: "Corporate Law",
+    category: "Human Rights",
     relevanceScore: 0.82,
-    country: "Belgium",
-    article: "Article 7",
+    country: "Romania",
+    article: "Article 8",
   },
 ];
 
