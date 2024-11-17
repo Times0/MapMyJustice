@@ -1,5 +1,5 @@
-import { Html } from '@react-three/drei';
-import { LegalCase } from '../types';
+import { Html } from "@react-three/drei";
+import { LegalCase } from "../types";
 
 interface CaseTooltipProps {
   caseData: LegalCase;
@@ -7,9 +7,13 @@ interface CaseTooltipProps {
   onClose: () => void;
 }
 
-export function CaseTooltip({ caseData, onTooltipHover, onClose }: CaseTooltipProps) {
+export function CaseTooltip({
+  caseData,
+  onTooltipHover,
+  onClose,
+}: CaseTooltipProps) {
   return (
-    <Html position={caseData.position} distanceFactor={20 }>
+    <Html position={caseData.position} distanceFactor={20} zIndexRange={[0, 0]}>
       <div
         className="bg-white p-4 rounded-lg shadow-lg w-64 relative"
         onMouseEnter={() => onTooltipHover(true)}
