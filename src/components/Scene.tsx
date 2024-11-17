@@ -107,10 +107,10 @@ export function Scene({ filteredCategories }: SceneProps) {
           rotateSpeed={0.5}
         />
 
-        <ambientLight intensity={0.3} />
+        <ambientLight intensity={1} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={1} />
-        <hemisphereLight intensity={0.5} groundColor="#ff0f00" />
+        <hemisphereLight intensity={1} groundColor="#ff0f00" />
 
         <Suspense fallback={null}>
           <Stars {...STARS_CONFIG} />
