@@ -3,7 +3,7 @@ import { clusters } from './clusters';
 
 function generateRandomOffset(): [number, number, number] {
   // Increased spread for more mixing between clusters
-  const spread = 100;
+  const spread = 25;
   return [
     (Math.random() - 0.5) * spread,
     (Math.random() - 0.5) * spread,

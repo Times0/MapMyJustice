@@ -1,11 +1,13 @@
 import { OrbitControls, PerspectiveCamera, Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef, useState } from "react";
+import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { legalCases } from "../data/cases";
 import { CaseNodes } from "./CaseNodes";
 import { OrbitControls as OrbitControlsImpl } from "three/examples/jsm/controls/OrbitControls";
 import { Vector3 } from "three";
 import { ResetView } from "./ResetView";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface SceneProps {
   filteredCategories: Set<string>;
@@ -13,7 +15,7 @@ interface SceneProps {
 
 const DEFAULT_CAMERA_POSITION = [0, 0, 80] as const;
 const DEFAULT_TARGET = [0, 0, 0] as const;
-const FOCUS_DISTANCE = 2; // Distance to maintain when focusing on a point
+const FOCUS_DISTANCE = 2;
 
 const STARS_CONFIG = {
   radius: 300,
@@ -92,7 +94,6 @@ export function Scene({ filteredCategories }: SceneProps) {
     <>
       <Canvas>
         <color attach="background" args={["#000B1E"]} />
-        <fog attach="fog" args={["#000B1E", 60, 110]} />
         <PerspectiveCamera makeDefault position={DEFAULT_CAMERA_POSITION} />
         <OrbitControls
           ref={controlsRef}
@@ -103,11 +104,13 @@ export function Scene({ filteredCategories }: SceneProps) {
           maxDistance={150}
           enableDamping={true}
           dampingFactor={0.05}
+          rotateSpeed={0.5}
         />
+
         <ambientLight intensity={0.3} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={1} />
-        <hemisphereLight intensity={1} groundColor="#ff0f00" />
+        <hemisphereLight intensity={0.5} groundColor="#ff0f00" />
 
         <Suspense fallback={null}>
           <Stars {...STARS_CONFIG} />
@@ -118,11 +121,8 @@ export function Scene({ filteredCategories }: SceneProps) {
           />
         </Suspense>
       </Canvas>
+
       <ResetView onReset={handleReset} disabled={isTransitioning} />
-      <div className="absolute top-4 right-4 text-white/80 text-sm backdrop-blur-sm bg-black/20 p-3 rounded-lg">
-        <p>Total Cases: {legalCases.length}</p>
-        <p>Visible Cases: {visibleCases.length}</p>
-      </div>
     </>
   );
 }

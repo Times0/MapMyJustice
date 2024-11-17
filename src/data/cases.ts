@@ -1,5 +1,5 @@
-import { generateCases } from './caseGenerator';
-import { clusters } from './clusters';
+import { generateCases } from "./caseGenerator";
+import { clusters } from "./clusters";
 
-export const legalCases = generateCases(1000);
+export const legalCases = generateCases(800);
 export { clusters };
