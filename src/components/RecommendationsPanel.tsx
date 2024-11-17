@@ -1,5 +1,5 @@
-import React from "react";
-import { Calendar, Tag } from "lucide-react";
+import React, { useState } from "react";
+import { Calendar, Tag, ChevronRight, ChevronLeft } from "lucide-react";
 
 interface RecommendationsPanelProps {
   prompt: string;
@@ -55,39 +55,59 @@ const recommendations = [
 ];
 
 export function RecommendationsPanel({ prompt }: RecommendationsPanelProps) {
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  const togglePanel = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className="absolute top-4 right-4 w-96 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
-      <div className="mb-4">
-        <h2 className="text-lg font-bold text-gray-800">Most Relevant Cases</h2>
-        <p className="text-sm text-gray-600 mt-1">Based on your search:</p>
-        <p className="text-sm text-gray-800 italic mt-1">"{prompt}"</p>
+    <div
+      className={`fixed top-4 right-0 h-[calc(100vh-2rem)] bg-white/90 backdrop-blur-sm shadow-lg transition-all duration-300 ${
+        isExpanded ? 'w-96' : 'w-12'
+      } overflow-hidden`}
+    >
+      <div
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white/90 p-2 rounded-l-md cursor-pointer"
+        onClick={togglePanel}
+      >
+        {isExpanded ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
       </div>
-      <div className="space-y-4">
-        {recommendations.map((rec) => (
-          <div
-            key={rec.id}
-            className="p-4 bg-white rounded-lg shadow border border-gray-100 hover:border-blue-200 transition-colors duration-200"
-          >
-            <div className="flex items-start justify-between">
-              <h3 className="font-semibold text-gray-800">{rec.title}</h3>
-              <span className="text-sm text-blue-600 font-medium">
-                {(rec.relevanceScore * 100).toFixed(0)}% match
-              </span>
-            </div>
-            <p className="text-sm text-gray-600 mt-2">{rec.summary}</p>
-            <div className="flex items-center gap-4 mt-3 text-sm text-gray-500">
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                {new Date(rec.date).toLocaleDateString()}
-              </div>
-              <div className="flex items-center gap-1">
-                <Tag className="w-4 h-4" />
-                {rec.category}
-              </div>
-            </div>
+      {isExpanded && (
+        <div className="p-4 h-full overflow-y-auto">
+          <div className="mb-4">
+            <h2 className="text-lg font-bold text-gray-800">Most Relevant Cases</h2>
+            <p className="text-sm text-gray-600 mt-1">Based on your search:</p>
+            <p className="text-sm text-gray-800 italic mt-1">"{prompt}"</p>
           </div>
-        ))}
-      </div>
+          <div className="space-y-4">
+            {recommendations.map((rec) => (
+              <div
+                key={rec.id}
+                className="p-4 bg-white rounded-lg shadow border border-gray-100 hover:border-blue-200 transition-colors duration-200"
+              >
+                <div className="flex items-start justify-between">
+                  <h3 className="font-semibold text-gray-800">{rec.title}</h3>
+                  <span className="text-sm text-blue-600 font-medium">
+                    {(rec.relevanceScore * 100).toFixed(0)}% match
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 mt-2">{rec.summary}</p>
+                <div className="flex items-center gap-4 mt-3 text-sm text-gray-500">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    {new Date(rec.date).toLocaleDateString()}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Tag className="w-4 h-4" />
+                    {rec.category}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

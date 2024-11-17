@@ -35,7 +35,7 @@ export function CaseNodes({
 
   // Add click handler to clear selection when clicking on empty space
   const handleCanvasClick = (e: any) => {
-    if (e.target.nodeName === 'CANVAS') {
+    if (e.target.nodeName === "CANVAS") {
       setSelectedCase(null);
       setHoveredCase(null);
       setIsTooltipHovered(false);
@@ -44,10 +44,10 @@ export function CaseNodes({
 
   // Add effect to bind/unbind click handler
   useEffect(() => {
-    const canvas = document.querySelector('canvas');
+    const canvas = document.querySelector("canvas");
     if (canvas) {
-      canvas.addEventListener('click', handleCanvasClick);
-      return () => canvas.removeEventListener('click', handleCanvasClick);
+      canvas.addEventListener("click", handleCanvasClick);
+      return () => canvas.removeEventListener("click", handleCanvasClick);
     }
   }, []);
 
@@ -66,19 +66,16 @@ export function CaseNodes({
             key={caseData.id}
             position={caseData.position}
             color={caseData.color}
-            scale={
-              hoveredCase?.id === caseData.id || selectedCase?.id === caseData.id ? 2 : 1
-            }
             onClick={(e) => handleClick(e, caseData)}
             onPointerOver={(e) => {
               e.stopPropagation();
               setHoveredCase(caseData);
-              document.body.style.cursor = 'pointer';
+              document.body.style.cursor = "pointer";
             }}
             onPointerOut={() => {
               if (!isTooltipHovered) {
                 setHoveredCase(selectedCase);
-                document.body.style.cursor = 'default';
+                document.body.style.cursor = "default";
               }
             }}
           />
